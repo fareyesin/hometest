@@ -1,0 +1,50 @@
+void I2C1_EV_IRQHandler(void)
+{
+	printf("\n=== I2C中断源检测 ===\n");
+    
+    /* 检查事件中断标志 */
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_SBSEND) == SET) {
+        printf("  SBSEND: 起始条件发送完成\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_ADDSEND) == SET) {
+        printf("  ADDSEND: 地址发送/匹配完成\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_BTC) == SET) {
+        printf("  BTC: 字节传输完成\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_ADD10SEND) == SET) {
+        printf("  ADD10SEND: 10位地址发送完成\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_STPDET) == SET) {
+        printf("  STPDET: 停止条件检测\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_RBNE) == SET) {
+        printf("  RBNE: 接收缓冲区非空\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_TBE) == SET) {
+        printf("  TBE: 发送缓冲区空\n");
+    }
+    
+    /* 检查错误中断标志 */
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_BERR) == SET) {
+        printf("  BERR: 总线错误\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_LOSTARB) == SET) {
+        printf("  LOSTARB: 仲裁丢失\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_AERR) == SET) {
+        printf("  AERR: ACK错误\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_OUERR) == SET) {
+        printf("  OUERR: 溢出/下溢错误\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_PECERR) == SET) {
+        printf("  PECERR: PEC错误\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_SMBTO) == SET) {
+        printf("  SMBTO: SMBus超时\n");
+    }
+    if (i2c_interrupt_flag_get(I2C0, I2C_INT_FLAG_SMBALT) == SET) {
+        printf("  SMBALT: SMBus警报\n");
+    }
+	
